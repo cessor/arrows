@@ -1,0 +1,37 @@
+<!-- #<canvas class="hourglass"></canvas> -->
+<style>
+.hourglass {
+    display: block;
+    height: 100px;
+    width: 70px;
+    background-color: #afafaf;
+    mask-image: url(/static/img/hourglass.svg);
+    -webkit-mask-image: url(/static/img/hourglass.svg);
+    -moz-mask-image: url(/static/img/hourglass.svg);
+}
+.sand {
+    background-color: #11ccff;
+    display: block;
+    height: 18px;
+}
+
+.sand-top {
+    top: 50%;
+    position: relative;
+}
+
+.sand-bottom {
+    position: relative;
+}
+</style>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Eagle_nebula_pillars.jpg" class="hourglass">
+
+<div class="hourglass">
+    <div class="sand sand-top"></div>
+    <div class="sand sand-bottom"></div>
+</div>
+
+<script src="/static/js/hourglass.js"></script>
+<script>
+</script>

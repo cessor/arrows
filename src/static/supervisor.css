@@ -1,0 +1,19 @@
+span.tag {
+    display: border: 1px solid white;
+}
+
+/*span.tag, input.tag {
+    display: block;
+
+    font-size: 14px;
+    width: 16em;
+}*/
+
+.tag-view, .tag-edit input {
+  font-family: monospace !important;
+  width: 16em;
+}
+
+.tag-edit {
+  display: none;
+}

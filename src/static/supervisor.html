@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block participants %}
+<a class="ui primary button" href="/reset">Neue Sitzung</button>
+<a class="ui red button" href="/supervisor/logout"><i class="power icon"></i>Logout</a>
+
+<table class="ui celled table unstackable">
+<thead>
+    <tr>
+        <th>Session</th>
+        <th>Date</th>
+        <th>Total Trials</th>
+        <th>Correct Trials</th>
+        <th>Incorrect Trials</th>
+        <th>Payment</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>
+{% if not participants %}
+  <tr>
+    <td colspan="5">
+        Nobody has finished the experiment yet!
+    </td>
+  </tr>
+{% end %}
+{% for i, participant in enumerate(participants) %}
+    <tr>
+        <td>
+            <div class="tag-control">
+              <span class="tag-view">
+                  {{ participant.get('tag', participant['PARTICIPANT_ID']) }}
+              </span>
+              <div class="tag-edit">
+                <div class="ui input focus">
+                  <input
+                    type="text"
+                    tabindex="{{i}}"
+                    data-tag="{{ participant.get('tag', participant['PARTICIPANT_ID']) }}"
+                    value="{{ participant.get('tag', participant['PARTICIPANT_ID']) }}">
+                </div>
+                <button type="button" data-participant="{{ participant['PARTICIPANT_ID'] }}" class="ui green button tag-ok">
+                  <i class="check icon"></i></button>
+                <button type="button" class="ui basic red button tag-cancel">
+                  <i class="undo icon"></i></button>
+              </div>
+            </div>
+        </td>
+        <td>
+            {{ participant.get('date') }}
+        </td>
+        <td>
+            {{ participant.get('total_trials') }}
+        </td>
+        <td>
+            {{ participant.get('correct_trials') }}
+        </td>
+        <td>
+            {{ participant.get('incorrect_trials') }}
+        </td>
+        <td>
+            {{ participant.get('payment') }} €
+        </td>
+        <td>
+            <a class="ui green button" href="/supervisor/xlsx/{{ participant['PARTICIPANT_ID'] }}" target="_blank">
+              <i class="file excel outline icon"></i>
+              Download
+            </a>
+        </td>
+    </tr>
+{% end %}
+</tbody>
+</table>
+<a class="ui green button" href="/supervisor/xlsx/" target="_blank">
+  <i class="file excel outline icon"></i>
+  Download All
+</a>
+{% end %}

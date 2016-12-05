@@ -1,0 +1,52 @@
+<div class="bar" id="bar" data-progress="30"></div>
+<style type="text/css">
+
+    #bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        /*border: 1px solid lime;*/
+    }
+
+    #bar canvas {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .clock span {
+        color: #333;
+        display: block;
+        line-height: 100px;
+        text-align: center;
+        width: 100px;
+        font-size:40px;
+        font-weight: 100;
+        font-style: italic;
+    }
+
+</style>
+<script type="text/javascript" src="/static/js/jquery-2.2.4.min.js"></script>
+<script src="/static/js/progress.js"></script>
+<script>
+
+    var cylinder = new Cylinder($('#bar'));
+
+//    cylinder.fill(5);
+
+   var count = 0;
+
+    var interval = setInterval(function () {
+        count += 1;
+        if(count > 100) {
+            cylinder.reset();
+            count = 1;
+        }
+        cylinder.fill(count);
+    }, 25);
+
+
+</script>

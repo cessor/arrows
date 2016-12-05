@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Choose</title>
+    <link rel="stylesheet"  href="static/css.css">
+</head>
+<body>
+
+<div id="init">
+        <p>
+            <h1>VPN Code</h1>
+            <input type="text" id="vpncode" placeholder="Code">
+        </p>
+        <button id="submit_code">Start</button>
+</div>
+
+<div id="instructions" >
+    <div class="pages">
+        <p>
+        Willkommen bei <em>Arrows</em><br><br>
+        Ihre Aufgabe in diesem Experiment besteht darin, in mehreren Runden
+        jeweils unter zwei Wertpapieren, <b>Wertpapier A</b> und <b>Wertpapier B</b>, das zu identifizieren, das die bessere Wahrscheinlichkeit bei den Auszahlungen hat.
+        </p>
+
+        <p>
+        In jeder Runde wird Ihnen ein neues Paar von Wertpapieren vorgelegt. Um
+        eine Auswahl treffen zu können, bekommen Sie zu beiden Wertpapieren eine  Stichprobe von Veränderungen des Kurses an einzelnen Tagen. Das heißt, für eine zufällig ausgewählte Stichprobe von Tagen aus der letzten Zeit sehen Sie für jeden Tag, ob der Kurs des jeweiligen Wertpapiers gestiegen (<img src="static/img/up.svg">) oder gefallen (<img src="static/img/down.svg">) ist. </p>
+
+        <p>
+            Aufgrund der beiden Stichproben von zufällig ausgewählten Tagen sollen Sie entscheiden, welches der beiden Wertpapiere über 100 Handelstage das bessere ist. Für jede richtige Entscheidung gewinnen Sie einen ECU. Für jede falsche Entscheidung verlieren Sie einen ECU. Der gesamte Punktgewinn, den Sie über alle Spielrunden hinweg gesammelt haben, wird am Ende in eine leitungsabhängige Bezahlung umgerechnet. Ein ECU entspricht dabei 5
+            Cent.
+        </p>
+
+        <p>
+        Das Kriterium für eine richtige Entscheidung ist übrigens klar definiert. Das "bessere" von zwei Wertpapieren ist dasjenige, das in der größeren
+        Gesamtheit aller 100 Handelstage, aus denen diese Stichproben gezogen
+        wurde, häufiger Kursgewinne und seltener Verluste zu verzeichnen hatte. Die
+        Höhe der einzelnen Gewinne (<img src="static/img/up.svg">) und Verluste (<img src="static/img/down.svg">) ist dabei identisch. Richtig
+        entscheiden heißt also, aufgrund einer Stichprobe von Tagen auf das
+        Gesamtergebnis aller Tage zu schließen.
+        </p>
+
+        <p>
+        Das gesamte Experiment findet am Computer statt. Jede Runde eröffnen Sie
+        selbst, indem Sie die Leertaste drücken. Solange Sie die Taste gedrückt halten, erscheinen in kurzem Zeitabstand eine wachsende Stichprobe von (<img src="static/img/up.svg">) und (<img src="static/img/down.svg">) Symbolen, die - wie gesagt - gestiegene bzw. gefallene Kurse an verschiedenen Tagen anzeigen. Die Ergebnisse von <b>Wertpapier A</b> erscheinen auf der <b>linken</b> Seite, die Ergebnisse von <b>Wertpapier B</b> aus der <b>rechten Seite</b> des
+        Bildschirms.
+        </p>
+
+        <p>
+        Sobald Sie meinen, genügend Information gesammelt zu haben, um eine
+        Entscheidung treffen zu können, lassen Sie die Leertaste los, um mit der bis dahin erhaltenen Stichprobe Ihre Entscheidung abzugeben. Die maximale Größe der Stichproben ist dabei begrenzt. Sie können in jeder Runde maximal die Kursveränderungen an <b>12</b> oder <b>18</b> Tagen ansehen. Diese Maximalgröße wird Ihnen in jeder Runde angezeigt. Spätestens wenn diese Obergrenze erreicht ist, müssen Sie eine Entscheidung treffen. Um am Ende erfolgreich zu sein, dürfen Sie nicht vergessen: Zeit ist Geld. Das heißt, Sie müssen versuchen, so viele ECU-Punkte wie möglich in der gegebenen Zeit zu erzielen. Sie sollten also nicht nur versuchen, durch Ausschöpfen der maximalen Stichproben-Größe mit größtmöglicher Sicherheit zu gewinnen. Sie sollten vielmehr versuchen, in der gegebenen Zeit so oft wie möglich zu gewinnen. Sie müssen also den optimalen Weg finden zwischen sicher gewinnen und oft gewinnen.
+        </p>
+
+
+        <p>
+        Das Experiment beginnt nun.
+        </p>
+    </div>
+    <button id="next_instruction">Weiter</button>
+</div>
+
+<div id="end">
+    <p>Vielen Dank für Ihre Teilnahme. Das Experiment ist nun beendet. Wenden Sie sich bitte an die Versuchsleiterin.</p>
+</div>
+
+<div id="pause">
+    <p>2 Minuten Pause</p>
+</div>
+
+<div id="loading">
+    <p>Lade Daten...</p>
+</div>
+
+<div id="trial">
+
+    <div id="top">
+        <h1 id="headline">Ihre Entscheidung:</h1>
+        <div id="hourglass"></div>
+    </div>
+
+    <div id="middle">
+        <div id="left" class="panel">
+            <button name="choice" id="choice_a" value="A">F: Wertpapier A</button>
+            <h1 id="label_left" class="label">Wertpapier A</h1>
+            <div id="grid_left" class="grid debug debug3"></div>
+        </div>
+        <div id="center">
+            <div id="progress"></div>
+        </div>
+        <div id="right" class="panel">
+            <button name="choice" id="choice_b" value="B">J: Wertpapier B</button>
+            <h1 id="label_right" class="label">Wertpapier B</h1>
+            <div id="grid_right" class="grid debug debug3"></div>
+        </div>
+    </div>
+
+    <div id="bottom">
+        <button id="next" type="button">Start</button>
+        <label id="hint" class="hint"></label>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="static/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="static/js/config.js"></script>
+<script type="text/javascript" src="static/js/ui.js"></script>
+<script type="text/javascript" src="static/js/application.js"></script>
+</html>

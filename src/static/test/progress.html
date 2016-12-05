@@ -1,0 +1,40 @@
+<div class="clock" id="clock" data-progress="30"></div>
+<style type="text/css">
+
+    .clock {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+    }
+
+    .clock canvas {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .clock span {
+        color: #333;
+        display: block;
+        line-height: 100px;
+        text-align: center;
+        width: 100px;
+        font-size:40px;
+        font-weight: 100;
+        font-style: italic;
+    }
+
+</style>
+<script type="text/javascript" src="/static/js/jquery-2.2.4.min.js"></script>
+<script src="/static/js/ui.js"></script>
+<script>
+
+    var element = document.getElementById('clock');
+    var progress = new Progress(element, 24);
+    progress.increase(12);
+    progress.label(12);
+
+</script>

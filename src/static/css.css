@@ -1,0 +1,203 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);*/
+
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-family: 'Roboto Slab';
+}
+
+div.debug {
+    background-color: white !important;
+}
+
+#init, #instructions, #end, #loading, #pause {
+    background-color: white;
+    z-index: 100;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+#instructions, #end, #pause {
+    display: none;
+}
+
+#loading {
+    display: block;
+}
+
+#loading, #pause {
+    text-align: center;
+    font-size: 24pt;
+    padding-top: calc(50vh - 12pt);
+}
+
+#init p, #instructions p, #end p {
+    font-size: 14pt;
+    margin: 5em 20vw;
+    line-height: 1.5em;
+    overflow: auto;
+}
+
+#instructions p img {
+    height: calc(1em);
+}
+
+#init input {
+    padding: 1em;
+    margin: 1em;
+    border-radius: 1em;
+    border: 2px solid #ddd;
+    display: block;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: normal;
+    font-size: 18pt;
+    margin: 0 auto;
+}
+
+#init input:focus {
+    outline: none;
+    border: 2px solid #1155cc;
+}
+
+#init button , #instructions button {
+    display: block;
+    margin: 0 auto;
+}
+
+div#top, div#middle {
+    display: block;
+    position: fixed;
+    width: 100vw;
+}
+
+div#top {
+    top: 0;
+    height: 15vh;
+}
+
+div#middle {
+    top: 15vh;
+    height: 60vh;
+}
+
+div#bottom {
+    text-align: center;
+    clear: both;
+    display: block;
+    height: 25vh;
+    position: fixed;
+    top: 80vh;
+    width: 100vw;
+}
+
+div#left, div#right {
+    display: block;
+    float: left;
+    height: 60vh;
+    width: 45vw;
+}
+
+div#center {
+    display: block;
+    float: left;
+    height: 60vh;
+    width: 10vw;
+}
+
+div#top h1.headline {
+    margin-top: 2em;
+    display: none;
+}
+
+h1 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    margin: 1em;
+    font-size: 24pt;
+}
+
+div.grid {
+    background-color: #ddd !important;
+    display: block;
+    height: 70%;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+}
+
+.panel {
+    text-align: center;
+}
+
+.panel button {
+    cursor: pointer;
+    font-size: 32pt;
+}
+
+button {
+    cursor: pointer;
+    background-color: #1155cc;
+    border-radius: 10px;
+    border: 1px solid #1155cc;
+    color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18pt;
+    margin: 0.5em;
+    padding: 0.5em 1em;
+}
+
+button:hover {
+    color: #1155cc;
+    background-color: white;
+    border: 1px solid #1155cc;
+}
+
+button:disabled {
+    color: #fff;
+    background-color: #ccc;
+    border-color: #333;
+}
+
+label.hint {
+    display: block;
+    margin: 2em;
+}
+
+#progress {
+    background-color: #fff;
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 1em auto;
+    position: fixed;
+    top: calc(50vh - 50px);
+    left: calc(50vw - 50px);
+}
+
+#progress span {
+    position: fixed;
+    color: #333;
+    display: block;
+    line-height: 100px;
+    text-align: center;
+    width: 100px;
+    font-size: 40px;
+    font-weight: normal;
+    /*font-style: italic;*/
+    font-family: 'Roboto Slab';
+}
+
+div#hourglass {
+    float: right;
+    /*border: 1px solid lime;*/
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    width: 100px;
+    height: 100px;
+}
