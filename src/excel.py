@@ -1,6 +1,7 @@
-import xlsxwriter
 import os
 import string
+import tempfile
+import xlsxwriter
 
 from model import Participant
 
@@ -9,7 +10,7 @@ APPLICATION_START = 1000
 HEADER_ROW = 0
 INFO_OFFSET = 5
 SAVE_EVENT = 5
-TMP = '/tmp'
+TMP = tempfile.gettempdir()
 
 
 EVENT_NAMES = {
@@ -40,8 +41,8 @@ def split_header(header):
 
 _events_header = ('event name time').split(' ')
 _trials_header = ('delta p1 p2 subrange_key sample_size '
-    'selection ticks timedelta empirical_delta empirical_p1 '
-    'empirical_p2 start_with left right timestamp ').split(' ')
+                  'selection ticks timedelta empirical_delta empirical_p1 '
+                  'empirical_p2 start_with left right timestamp ').split(' ')
 
 _info_header = {
     'Object Id': (lambda p: str(p.get('_id'))),
@@ -49,6 +50,7 @@ _info_header = {
     'Tag': (lambda p: p.get('tag', 'NA')),
     'Created': (lambda p: str(p.get('_id').generation_time))
 }
+
 
 def _printable_name(name):
     alphabet = string.ascii_letters + string.digits
@@ -70,14 +72,13 @@ def sequence_to_string(sequence):
     return ''.join(map(str, sequence))
 
 conversions = {
-    'left':  lambda e: sequence_to_string(unpack(e, 'steps')),
+    'left': lambda e: sequence_to_string(unpack(e, 'steps')),
     'right': lambda e: sequence_to_string(unpack(e, 'steps'))
 }
 
 
 def ident(v):
     return v
-
 
 
 class ParticipantWorkbook(object):
@@ -88,7 +89,6 @@ class ParticipantWorkbook(object):
     def write(self):
         options = {'constant_memory': True}
         excel_file_path = os.path.join(TMP, self._make_file_name())
-
         if os.path.isfile(excel_file_path):
             os.remove(excel_file_path)
 
@@ -124,10 +124,10 @@ class ParticipantWorkbook(object):
         # Filter Events
         trials = self.participant.get('trials')
         events = (event
-            for event
-            in trials
-            if event.get('event') >= APPLICATION_START
-        )
+                  for event
+                  in trials
+                  if event.get('event') >= APPLICATION_START
+                  )
 
         # Write Event Header
         for i, caption in enumerate(_events_header):
@@ -145,11 +145,11 @@ class ParticipantWorkbook(object):
         # Filter Events
         trials = self.participant.get('trials')
         events = (event
-            for event in
-            trials
-            if event.get('data')
-            and event.get('event') == SAVE_EVENT
-        )
+                  for event in
+                  trials
+                  if event.get('data')
+                  and event.get('event') == SAVE_EVENT
+                  )
 
         # Write Event Header
         for i, caption in enumerate(_trials_header):
@@ -165,13 +165,14 @@ class ParticipantWorkbook(object):
                 value = conversion(data.get(caption))
                 self.worksheet.write(row + 1, col, value)
 
+
 class CompleteWorkbook(ParticipantWorkbook):
 
     HEADER = ("participant_id tag timestamp "
-        "delta p1 p2 subrange_key "
-        "empirical_delta empirical_p1 empirical_p2 "
-        "sample_size ticks timedelta selection "
-        "start_with last_left last_right left right").split(' ')
+              "delta p1 p2 subrange_key "
+              "empirical_delta empirical_p1 empirical_p2 "
+              "sample_size ticks timedelta selection "
+              "start_with last_left last_right left right").split(' ')
 
     RENAME = {
         "timedelta": "duration_ms",

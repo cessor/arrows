@@ -25,10 +25,10 @@ class Participants(object):
             self.reduce_js = reduce_file.read()
 
     def create(self, participant):
-        return self.collection.insert(participant.document())
+        return self.collection.insert_one(participant.document())
 
     def add_trials(self, participant_id, trials):
-        return self.collection.update(
+        return self.collection.update_one(
             {Participant.KEY: participant_id},
             {'$push': {'trials': {'$each': trials}}},
             upsert=True
@@ -36,7 +36,7 @@ class Participants(object):
 
     def update_tag(self, participant_id, tag):
         print(participant_id)
-        return self.collection.update(
+        return self.collection.update_one(
             {Participant.KEY: participant_id},
             {'$set': {'tag': tag }}
         )

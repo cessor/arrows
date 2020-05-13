@@ -22,6 +22,11 @@ function Logger () {
             if(options.debug()) {
                 console.log("Saved");
             }
+        })
+        .error(function (xhr, status, error) {
+            if(options.debug()) {
+                console.log("Error: ", error);
+            }
         });
     }
 
@@ -392,10 +397,9 @@ function GreenArrow () {
 
     }
     log(EVENT.APPLICATION_START);
-
+    start();
 }
 
 window.application = new GreenArrow();
-window.application.start();
 
 })(window);
