@@ -4,7 +4,6 @@ import logging
 import os
 
 from tornado import gen
-from tornado.concurrent import return_future
 from tornado.web import RequestHandler, authenticated
 
 import sampler
@@ -225,16 +224,15 @@ class UpdateParticipant(Admin):
         self.finish({})
 
 
-@return_future
-def make_participant_workbook(participant, callback):
-    filename = ParticipantWorkbook(participant).write()
-    callback(filename)
+@gen.coroutine
+def make_participant_workbook(participant):
+    return ParticipantWorkbook(participant).write()
 
 
-@return_future
-def make_complete_workbook(events, callback):
-    filename = CompleteWorkbook(events).write()
-    callback(filename)
+@gen.coroutine
+def make_complete_workbook(events):
+    return CompleteWorkbook(events).write()
+
 
 
 class Xlsx(Admin):

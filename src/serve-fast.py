@@ -9,7 +9,7 @@ os.chdir(dname)
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado.options import options
-from tornado.web import Application, asynchronous, url, StaticFileHandler
+from tornado.web import Application, url, StaticFileHandler
 
 from config import environment, config_file
 

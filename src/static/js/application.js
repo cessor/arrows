@@ -392,9 +392,10 @@ function GreenArrow () {
 
     }
     log(EVENT.APPLICATION_START);
-    start();
+
 }
 
 window.application = new GreenArrow();
+window.application.start();
 
 })(window);
