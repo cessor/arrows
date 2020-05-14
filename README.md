@@ -1,11 +1,23 @@
 # Arrows
 
+Software zur Durchführung des Experiments aus:
+Fiedler, K., Prager, J., McCaughy, L., Schnell, K., (2019) Speed-Accuracy Tradeoffs in Sample-Based Choices, **Discussion Paper**, Universität Heidelberg
+
+# Features
+
+ - Browser-basierte Studie
+ - Teil
+ - Ansicht für ExperimentatorInnen
+ - Datenexport nach Excel
+
+
 Requires:
-    Python 3.5
-    MongoDb
+
+ - Python 3.5
+ - MongoDb
 
 # Docker
-Installtion und Betrieb gehen am einfachsten per Dockercontainer.
+Installation und Betrieb gehen am einfachsten per Dockercontainer.
 Dazu kann das beiliegende Image + Scripte verwendet werden. Durch "docker build" wird dabei die komplette Installation übernommen.
 
 ## Installation
@@ -35,14 +47,13 @@ Dazu kann das beiliegende Image + Scripte verwendet werden. Durch "docker build"
     $ cd src/
     $ python server-fast.py
 
-3. Sicherheit:
-Evtl. Apache oder Nginx mit HTTPS vorschalten.
+Hinweis: Im Ordner `docker` liegen einige Shell-Scripte. Alternativ kann docker-compose verwendet werden, jedoch liegt keine `docker-compose.yml` Konfiguration bei.
 
 
 Datenauswertung
 ---------------
 
-Die Daten jedes Teilnehmers liegen als XLSX Dateien vor. Jede Datei beinhaltet zwei Arbeitsblätter: "System Events" und "Trials".
+Die Daten jeder TeilnehmerIn liegen als XLSX Datei vor. Jede Datei beinhaltet zwei Arbeitsblätter: "System Events" und "Trials".
 
 Das Arbeitsblatt "System Events" zeigt eine Übersicht der Abfolge der Ereignisse, also wann die Anwendung gestartet und geschlossen wurde, etc.
 
@@ -89,12 +100,13 @@ Das Arbeitsblatt "Trials" zeigt eine Übersicht der Variablen jedes Durchlaufs:
 *) Aufgrund von Rundungsfehlern kann der tatsächliche Abstand zwischen den Wertpapieren vom ursprünglichen Parameter, der für das Sampling verwendet wurde, abweichen.
 
 
-Bitte beachten:
----------------
 
-Das System prüft in den Rohdaten NICHT, ob die Auswahl des Teilnehmers RICHTIG war, sondern ob der Teilnehmer die RECHTE oder die LINKE Seite gewählt hat.
+Hinweis zur Interpretation
+--------------------------
 
-Das 'right' in selected_right bezieht sich also auf die RECHTE aktie (1 wenn diese gewählt wurde, 0 wenn nicht). Daher entspricht im Feld: selected_right: 0 Links und 1 Rechts.
+Bitte beachten Sie, dass die Daten in der Exceldatei nichts interpertieren. Die Angabgen "right" und "left" entsprechen daher "rechts" und "links". Der Wert "right" bedeutet also nicht "richtig", sondern meint die getroffene Auswahl des Teilnehmers. Das System prüft in den Rohdaten NICHT, ob die Auswahl des Teilnehmers RICHTIG war, sondern ob der Teilnehmer die RECHTE oder die LINKE Seite gewählt hat.
+
+Das 'right' in selected_right bezieht sich also auf die RECHTE Aktie (1 wenn diese gewählt wurde, 0 wenn nicht). Daher entspricht im Feld: selected_right: 0 Links und 1 Rechts.
 
 RIGHT bedeutet NICHT, dass der Trial vom Teilnehmer korrekt bewertet wurde. Ob der Teilnehmer richtig gewählt hat, ergibt sich aus dem Abgleich mit dem empirischen p-Werten. Wenn das empirische p1 größer ist als das empirische p2, dann war die linke aktie besser. Der Trial ist dann korrekt, wenn
 
@@ -102,4 +114,4 @@ p1 > p2 UND selected_right = 0
 ODER
 p1 < p2 UND selected_right = 1
 
-Diese Logik ist im Anzeigemodul vorhanden, sodass die Auszahlung stattfinden kann, jedoch wurde dies nicht für die Rohdatenausgabe implementiert (wg. Zeitmangel).
+Diese Logik ist im Anzeigemodul vorhanden, sodass die Auszahlung stattfinden kann, jedoch wurde dies nicht für die Rohdatenausgabe implementiert.
